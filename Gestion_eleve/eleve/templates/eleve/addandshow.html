@@ -1,0 +1,9 @@
+{% extends 'eleve/base.html' %}
+{% block content %}
+<h4>Ajouter un nouvel eleve</h4>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-success" value=" Ajouter">
+</form>
+{% endblock content %}
