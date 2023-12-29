@@ -9,5 +9,45 @@
             <input type="submit" class="btn btn-success" value=" Ajouter">
         </form>
     </div>
+    <div class="col-sm-7  offset-1">
+        <h4 class="text-center alert alert-info">Montrer les informations de l'élève</h4>
+        {% if stu %}
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mot de passe</th>
+                <th scope="col">naissance</th>
+                <th scope="col">sexe</th>
+                <th scope="col">niveau</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for st in stu %}
+              <tr>
+                <th scope="row">{{st.id}}</th>
+                <td>{{st.name}}</td>
+                <td>{{st.email}}</td>
+                <td>{{st.password}}</td>
+                <td>{{st.naissance}}</td>
+                <td>{{st.sexe}}</td>
+                <td>{{st.niveau}}</td>
+                <td>
+                    <a href="{%url 'updatedata' st.id %}" class="btn btn-warning btn-sm">Modifier</a>
+                    <form action="{% url 'deletedata' st.id  %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger"value="Supprimer">
+                    </form>
+                </td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+         <h4 class = "text-center alert alert-warning">Pas d'enregistrement</h4>
+        {% endif%}
+    </div>
 </div>
 {% endblock content %}
